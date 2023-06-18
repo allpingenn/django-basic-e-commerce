@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping | Free Shipping</title>
+    <!--! Favico  -->
+    <link rel="shortcut icon" href="{% static 'img/logom1.png' %}" type="image/x-icon">
+    <!--! CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--! BS CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--! BS ICONS -->
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+  </head>
+  <body id="indexPage">
+
+    {% include "includes/_navbar.html" %}
+
+    <!--! CONTENT START  -->
+    <div class="container">
+      <div class="row">
+        <!-- SIDE BAR START  -->
+        <div class="col-lg-2 col-md-3 mt-5">
+          <h4 class="text-center text-warning">CATEGORY</h4>
+          <hr>
+          <div class="border">
+            <ul class="nav nav-pills flex-column" id="parentM">
+              <li class="nav-item">
+                <a
+                  href="#submenu"
+                  class="nav-link text-black"
+                  data-bs-toggle="collapse"
+                  aria-current="page"
+                >
+                  <span class="d-flex justify-content-between">
+                    <span class="fs-6">WOMENS</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </span>
+                </a>
+                <ul
+                  class="nav collapse ms-1"
+                  id="submenu"
+                  data-bs-parent="#parentM"
+                >
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#" aria-current="page">
+                      Item1
+                    </a>
+                  </li>
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#">Item 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#submenu2"
+                  class="nav-link text-black"
+                  data-bs-toggle="collapse"
+                  aria-current="page"
+                >
+                  <span class="d-flex justify-content-between">
+                    <span class="fs-6">MENS</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </span>
+                </a>
+                <ul
+                  class="nav collapse ms-1"
+                  id="submenu2"
+                  data-bs-parent="#parentM"
+                >
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#" aria-current="page"
+                      >Item 1</a
+                    >
+                  </li>
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#">Item 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#submenu3"
+                  class="nav-link text-black"
+                  data-bs-toggle="collapse"
+                  aria-current="page"
+                >
+                  <span class="d-flex justify-content-between">
+                    <span class="fs-6">KIDS</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </span>
+                </a>
+                <ul
+                  class="nav collapse ms-1"
+                  id="submenu3"
+                  data-bs-parent="#parentM"
+                >
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#" aria-current="page"
+                      >Item 1</a
+                    >
+                  </li>
+                  <li class="nav-item text-black w-100">
+                    <a class="nav-link text-black" href="#">Item 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">SPORTSWEAR</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">FASHION</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">HOUSEHOLDS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">INTERIORS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">CLOTHING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">BAGS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-black" href="">SHOES</a>
+              </li>
+            </ul>
+          </div>
+        
+        <!-- SIDE BAR END -->
+
+        <!-- ADVERT START-->
+        <hr class="mt-5">
+        <a href="#"
+          ><img src="{% static 'img/free.png' %}" alt="free" class="w-100 free-shipping"
+        ></a>
+        <a href="">
+          <video
+            src="{% static 'img/free2.mp4' %}"
+            autoplay
+            muted
+            loop
+            class="w-100"
+          ></video>
+        </a>
+      </div>
+      <!-- ADVERT END -->
+
+        <!-- PRODUCTIONS START  -->
+        <div class="col-lg-10 col-md-9 mt-5 px-5">
+          <div class="row">
+            <h4 class="text-center text-warning mb-3">FEATURES ITEMS</h4>
+            <hr>
+            <div class="row" id="product-list"></div>
+          </div>
+        </div>
+      </div>
+      <!-- PRODUCTIONS END -->
+
+      <!-- CAROUSEL START -->
+      <div
+        id="carouselExampleAutoplaying"
+        class="carousel slide mb-5 mt-5 bg-body-secondary rounded-4"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="d-flex justify-content-around slider-left">
+              <div class="w-25 text-center mt-5">
+                <img src="{% static 'img/logom3.png' %}" class="logom" alt="logom">
+                <h5 class="mt-3">100% Customer Satisfaction</h5>
+                <p class="mt-3">Commerce Template</p>
+                <button type="button" class="btn btn-warning mt-3">
+                  Get now
+                </button>
+              </div>
+              <img src="{% static 'img/sale.png' %}" class="sale" alt="sale">
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="d-flex justify-content-around slider-left">
+              <div class="w-25 text-center mt-5">
+                <img src="{% static 'img/logom3.png' %}" class="logom" alt="logom">
+                <h5 class="mt-3">100% Customer Satisfaction</h5>
+                <p class="mt-3">Commerce Template</p>
+                <button type="button" class="btn btn-warning mt-3">
+                  Get now
+                </button>
+              </div>
+              <img src="{% static 'img/sale2.png' %}" class="sale2" alt="sale2">
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <!--! CONTENT END  -->
+
+    {% include "includes/_footer.html" %}
+    
+    <!--! BS JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>
