@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container login-container">
+        <div class="row">
+            {% comment %} Login {% endcomment %}
+            <div class="col-lg-5 col-md-12">
+                <h5>Login to your account</h5>
+                <form method="POST">
+                  {% csrf_token %}
+                    <input type="text" class="input p-2 mt-3 mt-md-2 mt-lg-3" placeholder="Name"
+                    name="username">
+                    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password">
+                    <button type="submit" class="btn btn-warning mt-4">Login</button>
+                </form>
+            </div>
+
+            {% comment %} Flame {% endcomment %}
+            <div class="col-lg-2 col-md-12 my-md-4 d-flex align-self-center justify-content-center">
+                <i class="bi bi-signpost-split-fill fs-1 text-warning"></i>
+            </div>
+
+            {% comment %} Register {% endcomment %}
+            <div class="col-lg-5 col-md-12">
+                <h5>New User Signup!</h5>
+                <form method="POST" class="">
+                  {% csrf_token %}
+                    
+                    <button type="submit" class="btn btn-warning mt-3">Signup</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    {% endblock content %}
+    
+
+    {% comment %} <input type="text" name="username" id="text" class="input p-2 mt-3" placeholder="Name">
+    <input type="email" name="mail" id="email-input2" class="input p-2 mt-4" placeholder="Email Address">
+    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password">
+    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password2"> {% endcomment %}
