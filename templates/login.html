@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container login-container">
+        <div class="row">
+            {% comment %} Login {% endcomment %}
+            <div class="col-12">
+                <h5 class='text-center mb-5'>Login to your account</h5>
+                <form method="POST" class='w-50 m-auto'>
+                  {% csrf_token %}
+                    <label>Username:</label>
+                    <input type="text" class="input form-control"name="username">
+                    <label>Password:</label>
+                    <input type="password" name="password" id="password" class="input form-control">
+                    <button type="submit" class="btn btn-warning mt-4">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

@@ -19,7 +19,7 @@ def userRegister(request):
         'button': button,
         'baslik': baslik,
     }
-    return render(request, 'loginAndRegister.html', context)
+    return render(request, 'register.html', context)
 
 def userLogin(request):
     if request.method == 'POST':
@@ -35,7 +35,7 @@ def userLogin(request):
             logout(request)
             return redirect('login')
     
-    return render(request, 'loginAndRegister.html')
+    return render(request, 'login.html')
 
 def userLogout(request):
     logout(request)
