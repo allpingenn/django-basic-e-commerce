@@ -17,7 +17,7 @@ def userRegister(request):
     context = {
         'form': form,
         'button': button,
-        'baslik': baslik
+        'baslik': baslik,
     }
     return render(request, 'loginAndRegister.html', context)
 
@@ -36,3 +36,7 @@ def userLogin(request):
             return redirect('login')
     
     return render(request, 'loginAndRegister.html')
+
+def userLogout(request):
+    logout(request)
+    return redirect('index')
