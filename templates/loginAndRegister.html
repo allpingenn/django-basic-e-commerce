@@ -25,14 +25,25 @@
 
             {% comment %} Register {% endcomment %}
             <div class="col-lg-5 col-md-12">
+                {% if baslik %}
                 <h5>New User Signup!</h5>
+                {% else %}
+                <video
+            src="{% static 'img/tick.mp4' %}"
+            autoplay
+            muted
+            loop
+            class="w-50 d-block m-auto"
+          ></video>
+                {% endif %}
                 <form method="POST">
                   {% csrf_token %}
                     {{form}}
+                    {% if button %}
                     <button type="submit" class="btn btn-warning mt-3">Signup</button>
+                    {% endif %}
                 </form>
             </div>
-            
         </div>
     </div>
     {% endblock content %}
