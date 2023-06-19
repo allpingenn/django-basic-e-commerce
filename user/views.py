@@ -4,20 +4,14 @@ from django.contrib.auth import authenticate, login, logout
 
 def userRegister(request):
     form = UserForm()
-    button = True
-    baslik = True
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            button = False
-            baslik = False
             return redirect('login')
         
     context = {
         'form': form,
-        'button': button,
-        'baslik': baslik,
     }
     return render(request, 'register.html', context)
 
