@@ -10,9 +10,10 @@
                 <h5>Login to your account</h5>
                 <form method="POST">
                   {% csrf_token %}
-                    <input type="text" class="input p-2 mt-3 mt-md-2 mt-lg-3" placeholder="Name"
-                    name="username">
-                    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password">
+                    <label>Username:</label>
+                    <input type="text" class="input form-control"name="username">
+                    <label>Password:</label>
+                    <input type="password" name="password" id="password" class="input form-control">
                     <button type="submit" class="btn btn-warning mt-4">Login</button>
                 </form>
             </div>
@@ -27,7 +28,7 @@
                 <h5>New User Signup!</h5>
                 <form method="POST" class="">
                   {% csrf_token %}
-                    
+                    {{form}}
                     <button type="submit" class="btn btn-warning mt-3">Signup</button>
                 </form>
             </div>
@@ -35,9 +36,3 @@
         </div>
     </div>
     {% endblock content %}
-    
-
-    {% comment %} <input type="text" name="username" id="text" class="input p-2 mt-3" placeholder="Name">
-    <input type="email" name="mail" id="email-input2" class="input p-2 mt-4" placeholder="Email Address">
-    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password">
-    <input type="password" name="password" id="password" class="input p-2 mt-3" placeholder="Password2"> {% endcomment %}

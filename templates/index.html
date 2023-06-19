@@ -16,9 +16,10 @@
     <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
   </head>
   <body id="indexPage">
-    {% block content %}
 
     {% include "includes/_navbar.html" %}
+
+    {% block content %}
 
     <!--! CONTENT START  -->
     <div class="container">
@@ -220,10 +221,10 @@
     </div>
     <!--! CONTENT END  -->
 
-    {% include "includes/_footer.html" %}
-
     {% endblock content %}
     
+    {% include "includes/_footer.html" %}
+
     <!--! BS JS -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>

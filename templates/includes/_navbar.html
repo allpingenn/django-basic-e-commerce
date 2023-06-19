@@ -40,7 +40,7 @@
     <div class="container-fluid d-flex justify-content-between header-top">
       <!-- Header Middle Left -->
       <span class="d-flex header-middle-left justify-content-center">
-        <a href="index.html"
+        <a href="{% url 'index' %}"
           ><img src="{% static 'img/logom3.png'%}" alt="logom" class="logom mt-4"
         ></a>
         <span class="d-flex dollar">
@@ -79,7 +79,7 @@
       <!-- Header Middle Right -->
       <span class="mt-5 mx-5 header-middle-right">
         <a
-          href="./pages/login.html"
+          href="{% url 'loginAndRegister' %}"
           class="text-black text-decoration-none px-2"
           ><i class="bi bi-person-fill px-2"></i>Account</a
         >
@@ -102,7 +102,7 @@
           >Cart</a
         >
         <a
-          href="./pages/login.html"
+          href="{% url 'loginAndRegister' %}"
           class="text-black text-decoration-none px-2"
           ><i class="bi bi-lock-fill px-2"></i>Login</a
         >
@@ -127,7 +127,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index.html"
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}"
                 >Home</a
               >
             </li>

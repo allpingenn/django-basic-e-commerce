@@ -8,5 +8,5 @@ class UserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         for name, field in self.fields.items():
-            field.widget.attrs.updat({'class':'form-control'})
+            field.widget.attrs.update({'class':'form-control'})
             field.help_text = ""
