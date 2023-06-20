@@ -93,7 +93,7 @@
           ><i class="bi bi-life-preserver px-2"></i>Checkout</a
         >
         <a
-          href="./pages/cart.html"
+          href="{% url 'cart' %}"
           class="text-black text-decoration-none px-2 basket"
           ><i class="bi bi-basket2-fill position-relative mx-2">
             <span
@@ -175,7 +175,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="./pages/contact.html" class="nav-link">Contact</a>
+              <a href="{% url 'contact' %}" class="nav-link">Contact</a>
             </li>
           </ul>
           <form class="d-flex" method="GET" role="search">
@@ -184,7 +184,8 @@
               type="search"
               placeholder="Men, Woman T-Shirt.."
               aria-label="Search"
-              id="search"
+              name="search"
+              value="{{search}}"
             >
             <button class="btn btn btn-warning" type="submit">
               <i class="bi bi-search"></i>

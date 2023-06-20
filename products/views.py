@@ -5,8 +5,14 @@ from .models import *
 def index(request):
     products = Product.objects.all()
     
+    search = ""
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+        products = Product.objects.filter(name__icontains = search)
+    
     context = {
-        'products': products
+        'products': products,
+        'search': search
     }
     return render(request, 'index.html', context)
 
@@ -20,3 +26,9 @@ def product(request, productId):
     }
     
     return render(request, 'productdetail.html', context)
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def cart(request):
+    return render(request, 'cart.html')
