@@ -6,4 +6,6 @@ urlpatterns = [
     path('product/<int:productId>', product, name='product'),
     path('contact/', contact, name='contact'),
     path('cart/', cart, name='cart'),
+    path('category/<str:category_name>/', category, name='category'),
+
 ]

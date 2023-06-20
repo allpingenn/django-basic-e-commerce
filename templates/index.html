@@ -28,111 +28,13 @@
         <div class="col-lg-2 col-md-3 mt-5">
           <h4 class="text-center text-warning">CATEGORY</h4>
           <hr>
-          {% for category in categories %}{% endfor %}
-          <div class="border">
+          <div class="border">  
             <ul class="nav nav-pills flex-column" id="parentM">
+              {% for category in categories %}
               <li class="nav-item">
-                <a
-                  href="#submenu"
-                  class="nav-link text-black"
-                  data-bs-toggle="collapse"
-                  aria-current="page"
-                >
-                  <span class="d-flex justify-content-between">
-                    <span class="fs-6">WOMENS</span>
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </a>
-                <ul
-                  class="nav collapse ms-1"
-                  id="submenu"
-                  data-bs-parent="#parentM"
-                >
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#" aria-current="page">
-                      Item1
-                    </a>
-                  </li>
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#">Item 2</a>
-                  </li>
-                </ul>
+                <a class="nav-link text-black" href="?category={{ category.name }}">{{ category.name }}</a>
               </li>
-              <li class="nav-item">
-                <a
-                  href="#submenu2"
-                  class="nav-link text-black"
-                  data-bs-toggle="collapse"
-                  aria-current="page"
-                >
-                  <span class="d-flex justify-content-between">
-                    <span class="fs-6">MENS</span>
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </a>
-                <ul
-                  class="nav collapse ms-1"
-                  id="submenu2"
-                  data-bs-parent="#parentM"
-                >
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#" aria-current="page"
-                      >Item 1</a
-                    >
-                  </li>
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#">Item 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a
-                  href="#submenu3"
-                  class="nav-link text-black"
-                  data-bs-toggle="collapse"
-                  aria-current="page"
-                >
-                  <span class="d-flex justify-content-between">
-                    <span class="fs-6">KIDS</span>
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </a>
-                <ul
-                  class="nav collapse ms-1"
-                  id="submenu3"
-                  data-bs-parent="#parentM"
-                >
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#" aria-current="page"
-                      >Item 1</a
-                    >
-                  </li>
-                  <li class="nav-item text-black w-100">
-                    <a class="nav-link text-black" href="#">Item 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">SPORTSWEAR</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">FASHION</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">HOUSEHOLDS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">INTERIORS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">CLOTHING</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">BAGS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-black" href="">SHOES</a>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         

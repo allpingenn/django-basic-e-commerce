@@ -4,17 +4,25 @@ from .models import *
 
 def index(request):
     products = Product.objects.all()
-    
-    search = ""
-    if request.GET.get('search'):
-        search = request.GET.get('search')
-        products = Product.objects.filter(name__icontains = search)
-    
+    search = request.GET.get('search', '')
+    category_name = request.GET.get('category', '')
+
+    if search:
+        products = products.filter(name__icontains=search)
+
+    if category_name:
+        products = products.filter(category__name=category_name)
+
     context = {
         'products': products,
-        'search': search
+        'search': search,
+        'category_name': category_name,
+        'categories': Category.objects.all()
     }
+
     return render(request, 'index.html', context)
+
+
 
 def product(request, productId):
     products = Product.objects.all()
@@ -26,6 +34,17 @@ def product(request, productId):
     }
     
     return render(request, 'productdetail.html', context)
+
+def category(request, category_name):
+    products = Product.objects.filter(category__name=category_name)
+
+    context = {
+        'products': products,
+        'category_name': category_name
+    }
+
+    return render(request, 'index.html', context)
+
 
 def contact(request):
     return render(request, 'contact.html')
