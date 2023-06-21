@@ -7,5 +7,5 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('cart/', cart, name='cart'),
     path('category/<str:category_name>/', category, name='category'),
-
+    path('update_item/', updateItem, name='update_item'),
 ]

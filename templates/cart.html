@@ -18,7 +18,30 @@
         </thead>
         <!-- PRODUCTIONS CART ADD -->
         <tbody class="cart-wrapper">
-          
+          {% for item in items %}
+          <tr class="cart-item">
+            <td class="p-md-4">
+              <img src="{{item.product.image.url}}" alt="" class="w-75 rounded">
+            </td>
+            <td class="fw-bold">{{item.product.name}}</td>
+            <td class="fw-bold text-center">${{item.product.price}}</td>
+            <td class="text-center">
+            <button class="btn btn-warning px-lg-3 px-sm-3 px-3 px-md-2 rounded-3 decrease-quantity fw-bolder" data-id=${
+              item.id
+            }>-</button>
+              <span class="fw-bold p-1 border px-lg-3 px-md-2  px-sm-3 px-3 bg-light">
+              {{item.quantity}}
+              </span>
+              <button class="btn btn-warning px-lg-3 px-sm-3 px-3 px-md-2 rounded-3 increase-quantity fw-bolder" data-id=${
+                item.id
+              }>+</button>
+            </td>
+            <td class="fw-bold text-center">${{item.get_total}}</td>
+            <td class="fw-bolder"><i class="bi bi-x-lg delete-cart border p-2 bg-light rounded-2" data-id=${
+              item.id
+            }></i></td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
 
@@ -66,7 +89,9 @@
             class="d-flex justify-content-between p-2 mb-2 bg-body-secondary flex-row"
           >
             <span>Cart Sub Total</span>
-            <span><strong id="sub-total"></strong></span>
+            <span><strong id="sub-total">
+              ${{order.get_cart_total}}
+            </strong></span>
           </div>
           <div
             class="d-flex justify-content-between p-2 mb-2 bg-body-secondary"
@@ -84,7 +109,9 @@
             class="d-flex justify-content-between p-2 mb-2 bg-body-secondary"
           >
             <span>Total</span>
-            <span><strong id="cart-total"></strong></span>
+            <span><strong id="cart-total">
+              {{order.fullTotal}}
+            </strong></span>
           </div>
           <button type="button" class="btn btn-warning mt-4">Update</button>
           <button type="button" class="btn btn-warning mt-4 mx-lg-4 flex-row">

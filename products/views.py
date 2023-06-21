@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+import json
 from .models import *
 # Create your views here.
 
@@ -50,4 +52,29 @@ def contact(request):
     return render(request, 'contact.html')
 
 def cart(request):
-    return render(request, 'cart.html')
+    
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+    else:
+        items = []
+        
+    context = {
+        'items': items,
+        'order': order,
+    }
+    
+    return render(request, 'cart.html',context)
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+
+    print('Action:', action)
+    print('productId:', productId)
+    
+
+    return JsonResponse('Item was updated', safe=False)
+
