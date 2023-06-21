@@ -146,3 +146,6 @@ def deleteItem(request):
         return JsonResponse('Item was deleted', safe=False)
     else:
         return JsonResponse('Item not found', safe=False)
+
+def wishlist(request):
+    return render(request, 'wishlist.html')
