@@ -87,7 +87,9 @@
         <a
           href="{% url 'wishlist' %}"
           class="text-black text-decoration-none px-2 wishlist"
-          ><i class="bi bi-star px-2"></i>Wishlist</a
+          ><i class="bi bi-star px-2 position-relative"><span
+              class="position-absolute position-absolute rounded-circle bg-danger d-flex justify-content-center align-items-center text-white fw-bold cart-count"
+              >{{wishlistItems}}</span></i>Wishlist</a
         >
         <a href="{% url 'cart' %}" class="text-black text-decoration-none px-2"
           ><i class="bi bi-life-preserver px-2"></i>Checkout</a
@@ -176,7 +178,7 @@
               <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
             </li>
           </ul>
-          <form class="d-flex" method="GET" role="search">
+          <form class="d-flex" method="GET" role="search" action="{% url 'index' %}">
             <input
               class="form-control me-2"
               type="search"

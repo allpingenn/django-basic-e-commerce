@@ -10,11 +10,14 @@ def index(request):
     category_name = request.GET.get('category', '')
     customer = None
     cartItems = 0
+    wishlistItems = 0
 
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         cartItems = order.get_cart_items
+        wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+        wishlistItems = wishlist.get_wishlist_items
 
     if search:
         products = products.filter(name__icontains=search)
@@ -28,6 +31,7 @@ def index(request):
         'category_name': category_name,
         'categories': Category.objects.all(),
         'cartItems': cartItems,
+        'wishlistItems': wishlistItems,
     }
 
     return render(request, 'index.html', context)
@@ -40,16 +44,19 @@ def product(request, productId):
     product = Product.objects.get(id=int(productId))
     customer = None
     cartItems = 0
+    wishlistItems = 0
 
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        if not created:
-            cartItems = order.get_cart_items
+        cartItems = order.get_cart_items
+        wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+        wishlistItems = wishlist.get_wishlist_items
     
     context = {
         'product': product,
         'products': products,
+        'wishlistItems': wishlistItems,
         'cartItems': cartItems
     }
     
@@ -70,15 +77,18 @@ def category(request, category_name):
 def contact(request):
     customer = None
     cartItems = 0
+    wishlistItems = 0
 
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        if not created:
-            cartItems = order.get_cart_items
+        cartItems = order.get_cart_items
+        wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+        wishlistItems = wishlist.get_wishlist_items
     
     context = {
-        'cartItems': cartItems
+        'cartItems': cartItems,
+        'wishlistItems': wishlistItems,
     }
     
     return render(request, 'contact.html', context)
@@ -86,11 +96,17 @@ def contact(request):
 
 def cart(request):
     
+    customer = None
+    cartItems = 0
+    wishlistItems = 0
+    
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
+        wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+        wishlistItems = wishlist.get_wishlist_items
     else:
         items = []
         order = {'get_cart_total':0, 'fullTotal':0, 'get_cart_items':0}
@@ -99,7 +115,8 @@ def cart(request):
     context = {
         'items': items,
         'order': order,
-        'cartItems':cartItems
+        'cartItems':cartItems,
+        'wishlistItems': wishlistItems,
     }
     
     return render(request, 'cart.html',context)
@@ -109,9 +126,6 @@ def updateItem(request):
     productId = data['productId']
     action = data['action']
 
-    print('Action:', action)
-    print('productId:', productId)
-    
     customer = request.user.customer
     product = Product.objects.get(id = productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -148,4 +162,58 @@ def deleteItem(request):
         return JsonResponse('Item not found', safe=False)
 
 def wishlist(request):
-    return render(request, 'wishlist.html')
+    
+    customer = None
+    cartItems = 0
+    wishlistItems = 0
+    
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+        wishlist_items = wishlist.wishlistitem_set.all()
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        cartItems = order.get_cart_items
+        wishlistItems = wishlist.get_wishlist_items
+    else:
+        wishlist_items = []
+        
+    context = {
+        'wishlist_items': wishlist_items,
+        'cartItems': cartItems,
+        'wishlistItems': wishlistItems,
+    }
+    
+    return render(request, 'wishlist.html',context)
+
+def updateWishlist(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    customer = request.user.customer
+    product = Product.objects.get(id=int(productId))
+    wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+    
+    wishlistItem, created = WishlistItem.objects.get_or_create(wishlist = wishlist, product = product)
+    wishlistItem.quantity = 1
+        
+    wishlistItem.save()
+
+    return JsonResponse('Item was updated', safe=False)
+
+def deleteWishlistItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    
+    customer = request.user.customer
+    product = Product.objects.get(id=productId)
+    wishlist, created = Wishlist.objects.get_or_create(customer=customer, complete=False)
+    
+    wishlistItem = WishlistItem.objects.filter(wishlist=wishlist, product=product)
+    
+    if wishlistItem.exists():
+        wishlistItem.delete()
+        wishlist = Wishlist.objects.get(id=wishlist.id)
+        wishlist.save()
+
+        return JsonResponse('Item was deleted', safe=False)
+    else:
+        return JsonResponse('Item not found', safe=False)

@@ -66,3 +66,26 @@ class OrderItem(models.Model):
         total = self.product.price * self.quantity
         return total
     
+class Wishlist(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    date_wishlisted = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+    
+    @property
+    def get_wishlist_items(self):
+        wishlistItems = self.wishlistitem_set.all()
+        total = sum([item.quantity for item in wishlistItems])
+        return total
+
+class WishlistItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=1)
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.SET_NULL, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    
+    
+    
+   

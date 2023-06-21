@@ -31,6 +31,8 @@
                 >
               </div>
               <div class="col-12">
+                <form method="POST">
+                  {% csrf_token %}
                 <textarea
                   name="gorus-box"
                   id="gorus-box"
@@ -38,7 +40,8 @@
                   rows="5"
                   class="border rounded m-0 mt-3 textarea"
                 ></textarea>
-                <button type="button" class="btn btn-warning float-end mt-3">Submit</button>
+                <button type="submit" class="btn btn-warning float-end mt-3">Submit</button>
+              </form>
               </div>
               <div class="row">
                 <div class="col">

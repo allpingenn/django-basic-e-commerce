@@ -9,5 +9,7 @@ urlpatterns = [
     path('category/<str:category_name>/', category, name='category'),
     path('update_item/', updateItem, name='update_item'),
     path('delete_item/', deleteItem, name='delete_item'),
-    path('wishlist/', wishlist, name='wishlist')
+    path('wishlist/', wishlist, name='wishlist'),
+    path("update_wishlist_item/", updateWishlist, name="updateWishlist"),
+    path('delete_wishlist_item/', deleteWishlistItem, name='deleteWishlistItem'),
 ]
