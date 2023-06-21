@@ -98,7 +98,9 @@
               {% for product in products %}
               <div class="col-lg-4 col-md-6 mt-5">
                 <div class="card text-center">
-                  <a href="{% url 'product' product.id %}"><img src="{{product.image.url}}" class="card-img-top product-link"  alt="urun1"/></a>
+                  <a href="{% url 'product' product.id %}"><img src="{{product.image.url}}" class="card-img-top product-link"
+                  height="400"
+                  alt="urun1"/></a>
                   <div class="card-body">
                     <h5 class="card-title">${{product.price}}</h5>
                     <p class="card-text">{{product.name}}</p>
