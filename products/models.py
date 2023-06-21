@@ -25,7 +25,11 @@ class Customer(models.Model):
     email = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.user.username
+
     
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)

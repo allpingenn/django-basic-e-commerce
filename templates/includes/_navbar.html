@@ -80,7 +80,7 @@
       <span class="mt-5 mx-5 header-middle-right">
         {% if user.is_authenticated %}
         <a
-          href="#"
+          href="{% url 'index' %}"
           class="text-black text-decoration-none px-2 text-uppercase"
           ><i class="bi bi-person-fill px-2"></i>{{request.user}}</a
         >
@@ -89,7 +89,7 @@
           class="text-black text-decoration-none px-2 wishlist"
           ><i class="bi bi-star px-2"></i>Wishlist</a
         >
-        <a href="./pages/cart.html" class="text-black text-decoration-none px-2"
+        <a href="{% url 'cart' %}" class="text-black text-decoration-none px-2"
           ><i class="bi bi-life-preserver px-2"></i>Checkout</a
         >
         <a

@@ -1,4 +1,3 @@
-
 let updateBtn = document.getElementsByClassName('update-cart');
 
 for (let i = 0; i < updateBtn.length; i++) {
@@ -6,11 +5,14 @@ for (let i = 0; i < updateBtn.length; i++) {
         e.preventDefault();
         let productId = this.getAttribute('data-product');
         let action = this.getAttribute('data-action');
-        console.log('productId:', productId, 'Action:', action);
 
-        console.log('USER:', user);
         if(user === 'AnonymousUser'){
-            console.log('Not logged in');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Please Login',
+                confirmButtonColor: '#f0ad4e'
+              })
         }else{
             updateUserOrder(productId, action)
         }
@@ -18,26 +20,23 @@ for (let i = 0; i < updateBtn.length; i++) {
 }
 
 function updateUserOrder(productId, action){
-    console.log('User is authenticated, sending data...');
-        let url = '/update_item/'
+    let url = '/update_item/';
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'X-CSRFToken': csrftoken,
-            },
-            body:JSON.stringify({'productId':productId, 'action':action})
-        })
-        .then((response)=> {
-                return response.json();
-        })
-        .then((data)=> {
-                console.log('Data:', data);
-                location.reload()
-        })
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body:JSON.stringify({'productId':productId, 'action':action})
+    })
+    .then((response)=> {
+        return response.json();
+    })
+    .then(()=> {
+        location.reload();
+    });
 }
-///Delete Item
 
 let deleteBtns = document.getElementsByClassName('delete-item');
 
@@ -45,11 +44,14 @@ for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener('click', function(e){
         e.preventDefault();
         let productId = this.getAttribute('data-product');
-        console.log('productId:', productId);
 
-        console.log('USER:', user);
         if(user === 'AnonymousUser'){
-            console.log('Not logged in');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Please Login',
+                confirmButtonColor: '#f0ad4e'
+              })
         } else {
             deleteUserOrder(productId);
         }
@@ -57,7 +59,6 @@ for (let i = 0; i < deleteBtns.length; i++) {
 }
 
 function deleteUserOrder(productId) {
-    console.log('User is authenticated, sending data...');
     let url = '/delete_item/';
 
     fetch(url, {
@@ -71,12 +72,7 @@ function deleteUserOrder(productId) {
     .then((response) => {
         return response.json();
     })
-    .then((data) => {
-        console.log('Data:', data);
+    .then(() => {
         location.reload();
     });
 }
-
-
-
-

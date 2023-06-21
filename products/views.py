@@ -8,9 +8,14 @@ def index(request):
     products = Product.objects.all()
     search = request.GET.get('search', '')
     category_name = request.GET.get('category', '')
-    customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    cartItems = order.get_cart_items
+    customer = None
+    cartItems = 0
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        cartItems = order.get_cart_items
+
     if search:
         products = products.filter(name__icontains=search)
 
@@ -22,27 +27,34 @@ def index(request):
         'search': search,
         'category_name': category_name,
         'categories': Category.objects.all(),
-        'cartItems':cartItems
+        'cartItems': cartItems,
     }
 
     return render(request, 'index.html', context)
 
 
 
+
 def product(request, productId):
     products = Product.objects.all()
     product = Product.objects.get(id=int(productId))
-    customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    cartItems = order.get_cart_items
+    customer = None
+    cartItems = 0
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        if not created:
+            cartItems = order.get_cart_items
     
     context = {
         'product': product,
         'products': products,
-        'cartItems':cartItems
+        'cartItems': cartItems
     }
     
     return render(request, 'productdetail.html', context)
+
 
 def category(request, category_name):
     products = Product.objects.filter(category__name=category_name)
@@ -56,15 +68,21 @@ def category(request, category_name):
 
 
 def contact(request):
-    customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    cartItems = order.get_cart_items
+    customer = None
+    cartItems = 0
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        if not created:
+            cartItems = order.get_cart_items
     
     context = {
-        'cartItems':cartItems
+        'cartItems': cartItems
     }
     
-    return render(request, 'contact.html',context)
+    return render(request, 'contact.html', context)
+
 
 def cart(request):
     
