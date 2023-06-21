@@ -96,6 +96,9 @@ ul {
   background-color: #FFC107;
   cursor: pointer;
 }
+.message-container {
+  margin-bottom: -20px;
+}
 
 /* CARTS */
 

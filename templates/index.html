@@ -38,7 +38,17 @@
     </script>
   </head>
   <body id="indexPage">
-
+  <div class="message-container">
+    {% if messages %} 
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %} 
+    {% else %} 
+    {% endif %}
+  </div>
     {% include "includes/_navbar.html" %}
 
     {% block content %}

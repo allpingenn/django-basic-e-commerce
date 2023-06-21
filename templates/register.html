@@ -1,17 +1,13 @@
-{% extends 'index.html' %} 
-{% load static %} 
+{% extends 'index.html' %} {% load static %}
 
 {% block content %}
 
 <div class="container login-container">
   <div class="row">
-    {% comment %} Register {% endcomment %}
     <div class="col-12">
-      <h5 class='text-center mb-5'>New User Signup!</h5>
-
-      <form method="POST" class='w-50 m-auto'>
+      <h5 class="text-center mb-5">New User Signup!</h5>
+      <form method="POST" class="w-50 m-auto">
         {% csrf_token %} {{form}}
-
         <button type="submit" class="btn btn-warning mt-3">Signup</button>
       </form>
     </div>
