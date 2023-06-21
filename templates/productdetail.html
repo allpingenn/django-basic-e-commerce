@@ -7,7 +7,6 @@
 <!--! CONTENT START -->
     <section class="container mt-5">
       <!-- BreadCrumb -->
-      {% for i in product %}
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -18,13 +17,13 @@
           <li
             class="breadcrumb-item active breadcrumb-title"
             aria-current="page"
-          >{{i.name}}</li>
+          >{{product.name}}</li>
         </ol>
       </nav>
       <div class="row mt-5">
         <div class="col-lg-6 col-md-12">
           <img
-            src="{{i.image.url}}"
+            src="{{product.image.url}}"
             class="w-100 mt-2"
             alt="urun1"
             id="product-img"
@@ -33,7 +32,7 @@
         <div class="col-lg-6 col-md-12">
           <h1
             class="product-title text-md-center mt-md-3 text-sm-center mt-sm-3 text-lg-start"
-          >{{i.name}}</h1>
+          >{{product.name}}</h1>
           <span
             class="d-md-flex justify-content-md-center d-sm-flex justify-content-sm-center justify-content-lg-start"
           >
@@ -50,7 +49,7 @@
           </h6>
           <h3
             class="fw-bold pt-2 product-price2 text-md-center mt-md-3 text-sm-center mt-sm-3 text-lg-start"
-          >${{i.price}}</h3>
+          >${{product.price}}</h3>
           <h6 class="mt-">Color</h6>
           <div class="d-flex mb-3 mt-3">
             <div class="color bg-primary rounded-circle mx-2"></div>
@@ -67,13 +66,12 @@
             <span class="border m-0 p-2 px-4 size-select">XL</span>
           </div>
           <p class="mt-3 detail-p">
-            {{i.title}}
+            {{product.title}}
           </p>
-          <a href="#" class="btn btn-warning mt-2 w-100 mb-3" id="add-to-cart">
+          <a href="#" class="btn btn-warning mt-2 w-100 mb-3 update-cart" id="add-to-cart" data-product="{{product.id}}" data-action="add">
             <i class="bi bi-basket2-fill"></i>
             Add to Cart</a
           >
-          {% endfor %}
           <hr>
           <p class="p-0 m-0">SKU: <strong>BE45VRTY</strong></p>
           <p class="p-0 m-0">TAGS: Black,white</p>
